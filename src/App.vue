@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <HomePage></HomePage>
+    <NavComp/>
+    <router-view></router-view>
+    <FooterComponent id="footer"/>
   </div>
 </template>
 
 <script>
-import HomePage from './components/HomePage.vue';
+import FooterComponent from './components/FooterComponent.vue';
+import NavComp from './components/NavComp.vue';
 
 
 export default {
   name: 'App',
   components: {
-    HomePage
+    NavComp,
+    FooterComponent
 }
 }
 //Color Palette: https://colorhunt.co/palette/f1f6f914274e3948679ba4b4

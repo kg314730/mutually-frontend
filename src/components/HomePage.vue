@@ -1,75 +1,80 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg color-set">
-            <div class="container-fluid">
-                <img src="./../assets/logo.gif" alt="logo" class="logo">
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
-                    </li>
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Referee Sign In</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Referrer Sign In</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
           <div class="parent">
             <div class="flex1">
                 <img src="./../assets/landing_page.png" alt="Office Image" class="img-fluid">
             </div>
             <div class="flex2">
-                <center>
-                    <div class="card text-center card-width">
+              <center>
+                    <div class="card card-width">
                         <div class="card-header">
-                            Looking for a referral?
+                            Welcome to mutuALLY!
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Continue as a Referee</h5>
-                            <p class="card-text">Looking for a referral? Start your journey here and find a potential referrer...</p>
-                            <a href="#" class="btn btn-primary custom-btn">Get Started</a>
+                            <h5 class="card-title">Referral Portal</h5>
+                            <p class="card-text">mutuALLY provides a platform where users can seek, provide and manage referrals. Start your journey here and find a potential match...</p>
+                        </div>
+                        <div id="sign-up-form" class="carousel slide card-body" data-bs-touch="false">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <h2 class="custom-header">Sign Up</h2>
+                                <form class="card-body">
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" aria-describedby="username">
+                                        <div id="username" class="form-text">This name will be displayed on your profile</div>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="email" class="form-label">Email address</label>
+                                      <input type="email" class="form-control" id="email">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="pwd" class="form-label">Password</label>
+                                      <input type="password" class="form-control" id="pwd">
+                                    </div>
+                                    <center>
+                                        <button type="submit" class="btn btn-primary custom-btn">Submit</button>
+                                        <br>
+                                        <a href="" type="button" data-bs-target="#sign-up-form" data-bs-slide="next">Already a user? Sign In here...</a>
+                                    </center>
+                                    
+                                </form>
+                              </div>
+                              <div class="carousel-item">
+                                <h2 class="custom-header">Sign In</h2>
+                                <form class="card-body">
+                                    <div class="mb-3">
+                                      <label for="email" class="form-label">Email address</label>
+                                      <input type="email" class="form-control" id="email">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="pwd" class="form-label">Password</label>
+                                      <input type="password" class="form-control" id="pwd">
+                                    </div>
+                                    <center>
+                                        <button type="submit" class="btn btn-primary custom-btn">Submit</button>
+                                        <br>
+                                        <a href="" type="button" data-bs-target="#sign-up-form" data-bs-slide="next">Registering for the first time? <br>Sign Up here...</a>
+                                    </center>
+                                </form>
+                              </div>
+                            </div>
                         </div>
                         <div class="card-footer text-muted">
                         </div>
                     </div>
-                    <br><br>
-                    <div class="card text-center card-width">
-                        <div class="card-header">
-                            Looking for a referee?
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Continue as a Referrer</h5>
-                            <p class="card-text">Looking for helping talented candidates find their dream job? Start your journey here...</p>
-                            <a href="#" class="btn btn-primary custom-btn">Get Started</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                        </div>
-                    </div>
-                </center>
+                  </center>
             </div>
           </div>
-          <FooterComponent/>
     </div>
 </template>
 <script>
-import FooterComponent from './FooterComponent.vue';
 
 export default {
     name: "HomePage",
-    components: { FooterComponent }
 }
 </script>
 <style scoped>
-    nav li:hover{
-        background-color: #394867;
-    }
     .parent{
         display: flex;
         flex-direction: row;
@@ -86,21 +91,6 @@ export default {
     }
     .flex2{
         width:500px;
-    }
-    .color-set{
-        background-color: #14274E;
-    }
-    .color-set a{
-        color: #F1F6F9;
-    }
-    .logo{
-        height: 75px;
-    }
-    .navbar-toggler{
-        background-color: #F1F6F9;
-    }
-    .row{
-        height: 80vh;
     }
     .card-width{
         width: 400px;
@@ -119,5 +109,22 @@ export default {
     .custom-btn{
         background-color: #394867;
         width: 150px;
+    }
+    .custom-header{
+        background-color: #394867;
+        color: white;
+        text-align:center;
+        width: 50%;
+        margin: 0 auto;
+        border-radius: 10px;
+        padding: 7px;
+        font-size: 1.2em;
+    }
+    form a{
+        color: #14274E;
+        text-decoration: none;
+    }
+    form{
+      text-align: left;
     }
 </style>
