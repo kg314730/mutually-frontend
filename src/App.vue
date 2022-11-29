@@ -1,25 +1,26 @@
 <template>
   <div id="app">
-    <NavComp/>
+    <NavComp />
     <router-view></router-view>
-    <FooterComponent id="footer"/>
+    <FooterComponent id="footer" />
   </div>
 </template>
 
 <script>
-import FooterComponent from './components/FooterComponent.vue';
-import NavComp from './components/NavComp.vue';
-
+import FooterComponent from "./components/FooterComponent.vue";
+import NavComp from "./components/NavComp.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     NavComp,
-    FooterComponent
-}
-}
-//Color Palette: https://colorhunt.co/palette/f1f6f914274e3948679ba4b4
+    FooterComponent,
+  },
+};
 </script>
 
 <style>
+body {
+  background-color: #f1f6f9;
+}
 </style>
