@@ -146,6 +146,7 @@ export default {
           const content = await response.json();
           if (response.status != 401) {
             this.feed.push(...content);
+            this.feed.reverse();
           }
         }
       } catch (e) {

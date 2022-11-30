@@ -48,12 +48,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (from.path != to.path && !store.state.authenticated) {
+  if (!store.state.authenticated && to.path!='/' && to.path!='/profile') {
     next("/");
-  } 
-  // else if (to.path == "/profile" && from.path != "/myprofile") {
-  //   if (store.state.user.profile_set == "true") next("/feed");
-  // }
+  }
   next();
 });
 export default router;

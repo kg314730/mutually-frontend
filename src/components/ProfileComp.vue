@@ -90,7 +90,6 @@ export default {
         credentials: "include",
       });
       const content = await response.json();
-      // this.user = content;
       if (response.status != 401) {
         this.setAuthentication(true);
         this.$store.commit("UPDATE_USER", content);
