@@ -46,7 +46,7 @@ export default {
         body: JSON.stringify(this.$store.state.user),
       });
       if (resp.status == 200) {
-        // this.$store.state.user.profile_set = true;
+        this.$store.state.authenticated = true;
         await this.$router.push("/profile");
       } else {
         alert("Invalid Credentials");
