@@ -113,6 +113,9 @@ export default {
       const ct = await resp.json();
       // this.user = content;
       if (resp.status != 401) {
+        if(ct.career_details.length == 0){
+          this.$router.push('/profile');
+        }
         this.$store.commit("UPDATE_USER", ct);
       }
       const response = await fetch(`${process.env.VUE_APP_API_URL}feed/posts`, {
