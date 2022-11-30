@@ -38,7 +38,6 @@
                     Submit
                   </button>
                 </form>
-                <button class="btn btn-primary custom-btn">Submit</button>
               </div>
               <div class="card-footer text-muted"></div>
             </div>
@@ -105,8 +104,6 @@ export default {
             end_date: "",
             present: false,
           });
-        } else {
-          this.$router.push("feed");
         }
         if (this.$store.state.user.educational_details.length == 0) {
           this.$store.state.user.educational_details.push({

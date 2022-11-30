@@ -7,7 +7,7 @@ import OthersProfile from "../components/OthersProfile.vue";
 import CreatePost from "../components/CreatePost.vue";
 import FeedComp from "../components/FeedComp.vue";
 import NotFound from "../components/NotFound.vue";
-// import store from '../store/store'
+import store from "../store/store";
 Vue.use(VueRouter);
 
 const routes = [
@@ -47,4 +47,12 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  if (from.path != to.path && !store.state.authenticated) {
+    next("/");
+  } else if (to.path == "/profile" && from.path != "/myprofile") {
+    if (store.state.user.profile_set == "true") next("/feed");
+  }
+  next();
+});
 export default router;
