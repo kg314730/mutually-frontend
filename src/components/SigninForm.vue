@@ -47,7 +47,8 @@ export default {
       });
       if (resp.status == 200) {
         // this.$store.state.user.profile_set = true;
-        await this.$router.push("/feed");
+        await this.$router.push("/profile");
+      } else {
         alert("Invalid Credentials");
       }
     },
