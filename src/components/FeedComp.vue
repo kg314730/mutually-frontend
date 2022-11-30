@@ -39,7 +39,7 @@
           <router-link :to="'/viewprofile/' + item.creator"
             ><h5 style="margin-bottom: 0">{{ item.name }}</h5></router-link
           >
-          <h6 style="margin: 0">{{ item.company }}</h6>
+          <h6 style="margin: 0">Referral Company: {{ item.company }}</h6>
         </div>
         <h6 v-if="item.referral_type == 'looking'" style="margin-left: auto">
           #Seeking Referral
