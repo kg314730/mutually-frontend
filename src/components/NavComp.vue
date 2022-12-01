@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg color-set">
       <div class="container-fluid">
-        <img src="./../assets/logo.gif" alt="logo" class="logo" />
+        <router-link to="/feed"><img src="./../assets/logo.gif" alt="logo" class="logo" /></router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -195,7 +195,9 @@ export default {
         this.results = [];
         let ans = await (
           await fetch(
-            `${process.env.VUE_APP_API_URL}search?company=${this.company}`
+            `${process.env.VUE_APP_API_URL}search?company=${this.company}`,{
+              credentials: 'include',
+            }
           )
         ).json();
         this.results.push(...ans);
@@ -226,7 +228,8 @@ export default {
       document.getElementById("message-box").style.display = "block";
       let resp = await (
         await fetch(
-          `${process.env.VUE_APP_API_URL}messages?id=${this.user._id}`
+          `${process.env.VUE_APP_API_URL}messages?id=${this.user._id}`,
+          {credentials: "include"},
         )
       ).json();
       let loop = new Promise((resolve) => {
@@ -270,6 +273,7 @@ export default {
           from: this.user._id,
           message: this.message[i],
         }),
+        credentials: 'include',
       });
       if (resp.status == 200) {
         alert("Message sent Successfully!");

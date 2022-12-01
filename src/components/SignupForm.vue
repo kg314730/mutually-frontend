@@ -63,6 +63,7 @@ export default {
         method: "POST",
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify(this.$store.state.user),
+        credentials: 'include',
       });
       if (resp.status == 200) alert("User registered successfully!");
       else if (resp.status == 422)

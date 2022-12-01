@@ -270,6 +270,7 @@ export default {
           company: this.referral.company,
           position: this.referral.position,
         }),
+        credentials: "include",
       });
       if (resp.status == 200) {
         alert("Referral sent Successfully!");
@@ -296,6 +297,7 @@ export default {
           from: this.user._id,
           message: this.message,
         }),
+        credentials: 'include',
       });
       if (resp.status == 200) {
         alert("Message sent Successfully!");

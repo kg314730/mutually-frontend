@@ -156,6 +156,7 @@ export default {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(this.$store.state.user),
+        credentials: "include",
       });
       alert("Data Updated Successfully");
     },

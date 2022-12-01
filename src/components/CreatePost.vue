@@ -106,6 +106,7 @@ export default {
           picture: this.user.profile_picture,
           name: this.user.name,
         }),
+        credentials:'include',
       });
       alert("Post Created Successfully!");
       this.$router.push("/feed");
