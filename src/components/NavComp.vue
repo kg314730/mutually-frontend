@@ -315,6 +315,11 @@ export default {
   padding: 5px;
   position: static;
 }
+@media (min-width: 992px) {
+  .dropdown-menu {
+    position: static;
+  }
+}
 
 .messages {
   background-color: #f0ebe3;
