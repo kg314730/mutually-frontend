@@ -2,7 +2,9 @@
   <div>
     <nav class="navbar navbar-expand-lg color-set">
       <div class="container-fluid">
-        <router-link to="/feed"><img src="./../assets/logo.gif" alt="logo" class="logo" /></router-link>
+        <router-link to="/feed"
+          ><img src="./../assets/logo.gif" alt="logo" class="logo"
+        /></router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -59,29 +61,53 @@
                   v-for="(item, i) in messages"
                   :key="i"
                 >
-                  <div class="chat">
-                    <router-link :to="'/viewprofile/' + item[0]['1']._id"
-                      ><h4>{{ item[0]["1"].name }}</h4></router-link
-                    >
-                    <div class="chat" v-for="(msg, idx) in item" :key="idx">
-                      <div v-if="msg['0']" class="chat-msg mine">
-                        <h6>{{ msg["2"] }}</h6>
-                      </div>
-                      <div v-else class="chat-msg other">
-                        <h6>{{ msg["2"] }}</h6>
-                      </div>
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Enter Message...."
-                      v-model="message[i]"
-                    />
+                  <div class="dropdown">
                     <button
-                      class="btn btn-outline-success custom-btn"
-                      @click="sendMessage(i)"
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
                     >
-                      Send
+                      {{ item[0]["1"].name }}
                     </button>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li class="bg-transparent">
+                        <div class="chat">
+                          <router-link :to="'/viewprofile/' + item[0]['1']._id"
+                            ><center>
+                              <h4>{{ item[0]["1"].name }}</h4>
+                            </center></router-link
+                          >
+                          <div
+                            class="chat"
+                            v-for="(msg, idx) in item"
+                            :key="idx"
+                          >
+                            <div v-if="msg['0']" class="chat-msg mine">
+                              <h6>{{ msg["2"] }}</h6>
+                            </div>
+                            <div v-else class="chat-msg other">
+                              <h6>{{ msg["2"] }}</h6>
+                            </div>
+                          </div>
+                          <input
+                            type="text"
+                            placeholder="Enter Message...."
+                            v-model="message[i]"
+                          />
+                          <button
+                            class="btn btn-outline-success custom-btn"
+                            @click="sendMessage(i)"
+                          >
+                            Send
+                          </button>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -195,8 +221,9 @@ export default {
         this.results = [];
         let ans = await (
           await fetch(
-            `${process.env.VUE_APP_API_URL}search?company=${this.company}`,{
-              credentials: 'include',
+            `${process.env.VUE_APP_API_URL}search?company=${this.company}`,
+            {
+              credentials: "include",
             }
           )
         ).json();
@@ -229,40 +256,33 @@ export default {
       let resp = await (
         await fetch(
           `${process.env.VUE_APP_API_URL}messages?id=${this.user._id}`,
-          {credentials: "include"},
+          { credentials: "include" }
         )
       ).json();
-      let loop = new Promise((resolve) => {
-        resp.forEach(async (element, idx) => {
-          let key;
-          let other;
-          let mine;
-          if (element.to != element.from) {
-            if (element.to == this.user._id) {
-              key = element.from;
-              other = await this.getData(element.from);
-              mine = false;
-            } else {
-              key = element.to;
-              other = await this.getData(element.to);
-              mine = true;
-            }
-            let val = messagemap.get(key);
-            if (typeof val == "undefined") {
-              messagemap.set(key, [[mine, other, element.message]]);
-            } else {
-              val.push([mine, other, element.message]);
-            }
-            if (idx >= this.user.messages.length - 1) {
-              resolve();
-            }
+      for (let element of resp) {
+        let key;
+        let other;
+        let mine;
+        if (element.to != element.from) {
+          if (element.to == this.user._id) {
+            key = element.from;
+            other = await this.getData(element.from);
+            mine = false;
+          } else {
+            key = element.to;
+            other = await this.getData(element.to);
+            mine = true;
           }
-        });
-      });
-      loop.then(() => {
-        this.messages = Array.from(messagemap.values());
-        this.message = Array.from({ length: this.messages.length }, () => "");
-      });
+          let val = messagemap.get(key);
+          if (typeof val == "undefined") {
+            messagemap.set(key, [[mine, other, element.message]]);
+          } else {
+            val.push([mine, other, element.message]);
+          }
+        }
+      }
+      this.messages = Array.from(messagemap.values());
+      this.message = Array.from({ length: this.messages.length }, () => "");
     },
     async sendMessage(i) {
       const resp = await fetch(`${process.env.VUE_APP_API_URL}message`, {
@@ -273,7 +293,7 @@ export default {
           from: this.user._id,
           message: this.message[i],
         }),
-        credentials: 'include',
+        credentials: "include",
       });
       if (resp.status == 200) {
         alert("Message sent Successfully!");
@@ -287,6 +307,15 @@ export default {
 </script>
 
 <style scoped>
+.dropdown-toggle {
+  width: 100%;
+  background-color: #14274e;
+}
+.dropdown-menu {
+  padding: 5px;
+  position: unset;
+}
+
 .messages {
   background-color: #f0ebe3;
   color: black;
@@ -306,6 +335,9 @@ export default {
   padding: 5px;
   width: 90%;
   margin: 5px auto;
+}
+.dropdown > ul {
+  background-color: #f1f6f9;
 }
 .chat {
   display: flex;
@@ -380,6 +412,7 @@ nav li:hover,
   }
   .messages {
     width: 80vw;
+    max-width: 500px;
   }
 }
 .profile {
