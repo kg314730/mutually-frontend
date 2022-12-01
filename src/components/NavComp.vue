@@ -313,7 +313,7 @@ export default {
 }
 .dropdown-menu {
   padding: 5px;
-  position: unset;
+  position: static;
 }
 
 .messages {
