@@ -72,7 +72,7 @@
         >
           Delete <i class="fa-solid fa-trash-can"></i>
         </button>
-        <div class="chat">
+        <div class="chatbox">
           <textarea
             type="text"
             v-model="message"
@@ -161,11 +161,11 @@ export default {
       }
     },
     showChat(i) {
-      let element = Array.from(document.getElementsByClassName("chat"))[i];
+      let element = Array.from(document.getElementsByClassName("chatbox"))[i];
       element.style.display = "block";
     },
     hideChat(i) {
-      let element = Array.from(document.getElementsByClassName("chat"))[i];
+      let element = Array.from(document.getElementsByClassName("chatbox"))[i];
       element.style.display = "none";
     },
     async sendMessage(i) {
@@ -253,10 +253,10 @@ div {
   border: none;
 }
 .title,
-.chat {
+.chatbox {
   background-color: #f0ebe3;
 }
-.chat {
+.chatbox {
   margin: 5px;
   width: fit-content;
   display: none;
