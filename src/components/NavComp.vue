@@ -74,6 +74,7 @@
                     <ul
                       class="dropdown-menu"
                       aria-labelledby="dropdownMenuButton1"
+                      id="dropdown"
                     >
                       <li class="bg-transparent">
                         <div class="chat">
@@ -313,14 +314,10 @@ export default {
 }
 .dropdown-menu {
   padding: 5px;
+}
+#dropdown {
   position: static;
 }
-@media (min-width: 992px) {
-  .dropdown-menu {
-    position: static;
-  }
-}
-
 .messages {
   background-color: #f0ebe3;
   color: black;
