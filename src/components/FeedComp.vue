@@ -65,6 +65,13 @@
         >
           Send a Message <i class="fa-brands fa-rocketchat"></i>
         </button>
+        &nbsp;&nbsp;<button
+          class="btn btn-primary custom-btn"
+          @click="deletePost(item._id)"
+          v-if="user._id == item.creator"
+        >
+          Delete <i class="fa-solid fa-trash-can"></i>
+        </button>
         <div class="chat">
           <textarea
             type="text"
@@ -178,6 +185,34 @@ export default {
       } else {
         alert(resp.statusText);
         this.hideChat(i);
+      }
+    },
+    async deletePost(id) {
+      try {
+        if (confirm("Do you want to delete this post?")) {
+          let index = this.feed.findIndex((post) => post._id == id);
+          this.feed.splice(index, 1);
+          const response = await fetch(
+            `${process.env.VUE_APP_API_URL}feed/posts/delete`,
+            {
+              headers: { "Content-Type": "application/json" },
+              method: "POST",
+              credentials: "include",
+              body: JSON.stringify({
+                userID: this.user._id,
+                postID: id,
+              }),
+            }
+          );
+          if (response.status != 401) {
+            alert("Post deleted successfully!");
+          }
+          if (response.status == 401) {
+            alert("You are not authorized to delete.");
+          }
+        }
+      } catch (e) {
+        alert("Post could not be deleted!");
       }
     },
   },
