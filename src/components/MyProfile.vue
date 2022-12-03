@@ -131,7 +131,7 @@
         <div class="card-body" v-for="(item, i) in user.projects" :key="i">
           <h4 class="card-title">{{ item.name }}</h4>
           <p class="card-text">{{ item.description }}</p>
-          <a v-if="item.link" :href="item.link">
+          <a v-if="item.link" :href="item.link" target="_blank">
             <button class="btn btn-primary custom-btn">Project Link</button>
           </a>
           <button v-else class="btn btn-primary custom-btn" disabled>
