@@ -159,6 +159,7 @@ export default {
         credentials: "include",
       });
       alert("Data Updated Successfully");
+      this.$router.push("/feed");
     },
   },
 };
