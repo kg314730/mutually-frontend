@@ -110,7 +110,7 @@
         <div class="card-footer text-muted"></div>
       </div>
       <br />
-      <div class="card card-width" v-if="other_user.referral_history">
+      <div class="card card-width" v-if="(other_user.referral_history.length>0)">
         <div class="card-header">
           <h3>Referral History</h3>
         </div>
